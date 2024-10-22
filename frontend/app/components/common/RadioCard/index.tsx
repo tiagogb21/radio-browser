@@ -31,7 +31,7 @@ export const RadioCard = ({
       <div className="flex gap-2 items-center">
         {hasOption && (
           <div className="bg-project-gray-options p-2 rounded-full flex items-center justify-center">
-            <button onClick={() => handlePlayStop(url_resolved)}>
+            <button onClick={() => handlePlayStop(url_resolved)} className="pl-1">
               {playingRadio === url_resolved ? (
                 <FaStop size={24} />
               ) : (
@@ -46,7 +46,7 @@ export const RadioCard = ({
         </div>
       </div>
       {(hasOption && removeFromFavorites) && (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <button onClick={() => removeFromFavorites(changeuuid)}>
             <FaPencilAlt size={24} />
           </button>

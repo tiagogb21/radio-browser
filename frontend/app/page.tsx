@@ -1,6 +1,5 @@
 "use client";
 
-import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IRadio } from "./types/interfaces/IRadio";
@@ -12,9 +11,14 @@ import { Pagination } from "./components/Pagination";
 import { RadioList } from "./components/RadioList";
 import { SearchBar } from "./components/SearchBar";
 import { FavoriteList } from "./components/FavoritesList";
+import { Top } from "./components/Top";
+import { DancingCircles } from "./components/DancingCircles";
 
 export default function Home() {
-  const radios = useContextSelector(RadiosContext, (context) => context?.radios);
+  const radios = useContextSelector(
+    RadiosContext,
+    (context) => context?.radios
+  );
 
   const [favorites, setFavorites] = useState<IRadio[]>([]);
   const [playingRadio, setPlayingRadio] = useState<string>("");
@@ -63,31 +67,35 @@ export default function Home() {
         />
       </Drawer>
 
-      <div className={`flex-1 transition-margin ${isDrawerOpen ? "ml-80" : "ml-0"}`}>
-        <button className="text-white" type="button" onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+      <div
+        className={`flex-1 transition-margin ${
+          isDrawerOpen ? "ml-80" : "ml-0"
+        }`}
+      >
+        <button
+          className="text-white"
+          type="button"
+          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+        >
           <IoMenu size={24} />
         </button>
 
         <div className="container mx-auto flex flex-col gap-2 min-h-96">
-          <div className="flex flex-col text-gray-100">
-            <h1 className="text-center text-[1.75rem]">Radio Browser</h1>
-            <div className="flex justify-between">
-              <p className="uppercase">Favorite Radios</p>
-              <div className="hidden lg:flex items-center gap-1">
-                <FaSearch className="text-project-blue-icon" />
-                <input
-                  className="w-32 bg-inherit placeholder:text-white"
-                  type="text"
-                  placeholder="Search stations"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-
+          <Top search={search} setSearch={setSearch} />
           <div className="bg-project-gray-options min-h-72 rounded-lg">
-            <h2 className="text-xl uppercase p-4">Available Radios</h2>
+            {favorites.length > 0 ? (
+              <DancingCircles
+                radio={
+                  favorites.find(
+                    (radio) => radio.url_resolved === playingRadio
+                  ) || favorites[0]
+                }
+                playingRadio={playingRadio}
+                handlePlayStop={handlePlayStop}
+              />
+            ) : (
+              <h2 className="text-xl uppercase p-4">Available Radios</h2>
+            )}
             <FavoriteList
               favorites={favorites}
               playingRadio={playingRadio}
