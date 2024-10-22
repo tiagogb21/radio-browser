@@ -1,5 +1,4 @@
 import { InputHTMLAttributes } from "react";
-import { FieldErrors, Path } from "react-hook-form";
 
 interface FormInputProp<T> extends InputHTMLAttributes<HTMLInputElement> {
     id: string;

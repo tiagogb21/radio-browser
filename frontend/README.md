@@ -139,3 +139,28 @@ Além do desafio proposto temos alguns diferenciais:
 ## Suporte
 
 Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
+
+
+
+## Rodando no docker
+
+### Build da imagem Docker:
+
+No terminal, rode o comando:
+
+```bash
+  docker-compose build
+```
+
+### Rodar o container:
+
+Agora, inicie o container:
+
+```bash
+  docker-compose up
+```
+
+### Aplicação irá rodar em:
+
+http://localhost:3000
+

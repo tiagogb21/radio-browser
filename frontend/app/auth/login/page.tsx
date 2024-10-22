@@ -3,7 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema, type LoginSchemaType } from "@/libs/yup/schemas/loginSchema";
-import { FormInput } from "@/components/common/FormInput";
+import { FormInput } from "@/app/components/common/FormInput";
 
 export default function Login() {
   const {

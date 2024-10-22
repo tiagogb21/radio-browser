@@ -11,6 +11,18 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        project: {
+          blue: {
+            icon: "#196BE1"
+          },
+          gray: {
+            cotainer: "#2B2B30",
+            title: "#4C4C56",
+            card: "#62626D",
+            options: "#4B4B55",
+            drawer: "#18181B",
+          },
+        },
       },
     },
   },
