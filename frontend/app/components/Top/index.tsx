@@ -1,11 +1,12 @@
 import { FaSearch } from "react-icons/fa";
+import { IRadio } from "@/app/types/interfaces/IRadio";
 
 interface ITopProps {
   search: string;
   setSearch: (value: string) => void;
 }
 
-export const Top = ({search, setSearch} : ITopProps) => {
+export const Top = ({ search, setSearch }: ITopProps) => {
   return (
     <div className="flex flex-col text-gray-100">
       <h1 className="text-center text-[1.75rem]">Radio Browser</h1>

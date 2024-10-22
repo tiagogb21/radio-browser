@@ -23,13 +23,17 @@ export default function Home() {
   const [favorites, setFavorites] = useState<IRadio[]>([]);
   const [playingRadio, setPlayingRadio] = useState<string>("");
   const [search, setSearch] = useState("");
+  const [radioSearch, setRadioSearch] = useState("");
   const [page, setPage] = useState(1);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const addToFavorites = (radio: IRadio) => {
-    const newFavorites = [...favorites, radio];
-    setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    const alreadyFavorite = favorites.find((favorite) => favorite.changeuuid === radio.changeuuid);
+    if(!alreadyFavorite) {
+      const newFavorites = [...favorites, radio];
+      setFavorites(newFavorites);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    }
   };
 
   const removeFromFavorites = (changeuuid: string) => {
@@ -48,6 +52,14 @@ export default function Home() {
     }
   };
 
+  const handleUpdateFavorite = (updatedRadio: IRadio) => {
+    const newFavorites = favorites.map((radio) =>
+      radio.changeuuid === updatedRadio.changeuuid ? updatedRadio : radio
+    );
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
+
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
@@ -58,9 +70,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-project-gray-cotainer p-10 flex">
       <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}>
-        <SearchBar search={search} setSearch={setSearch} />
+        <SearchBar radioSearch={radioSearch} setRadioSearch={setRadioSearch} />
         <RadioList
           radios={radios}
+          radioSearch={radioSearch}
           playingRadio={playingRadio}
           handlePlayStop={handlePlayStop}
           addToFavorites={addToFavorites}
@@ -97,10 +110,12 @@ export default function Home() {
               <h2 className="text-xl uppercase p-4">Available Radios</h2>
             )}
             <FavoriteList
+              search={search}
               favorites={favorites}
               playingRadio={playingRadio}
               handlePlayStop={handlePlayStop}
               removeFromFavorites={removeFromFavorites}
+              handleUpdateFavorite={handleUpdateFavorite}
             />
             <Pagination page={page} setPage={setPage} />
           </div>

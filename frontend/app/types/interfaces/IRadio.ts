@@ -7,4 +7,5 @@ export interface IRadio {
   url: string;
   playcount: number;
   is_favorite: boolean;
+  language: string;
 }
