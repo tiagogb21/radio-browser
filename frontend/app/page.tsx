@@ -68,7 +68,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-project-gray-cotainer p-10 flex">
+    <main className="w-full min-h-screen bg-project-gray-cotainer p-10 flex">
       <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}>
         <SearchBar radioSearch={radioSearch} setRadioSearch={setRadioSearch} />
         <RadioList
@@ -82,7 +82,7 @@ export default function Home() {
 
       <div
         className={`flex-1 transition-margin ${
-          isDrawerOpen ? "ml-80" : "ml-0"
+          isDrawerOpen ? "md:ml-80" : "md:ml-0"
         }`}
       >
         <button
