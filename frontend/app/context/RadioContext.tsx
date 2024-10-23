@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { createContext } from "use-context-selector";
 import type { IRadio } from "../types/interfaces/IRadio";
 
@@ -21,10 +21,8 @@ export function RadiosProvider({ children }: RadiosProviderProps) {
 
   const fetchRadios = useCallback(
     async () => {
-      let baseURL = `https://de1.api.radio-browser.info/json/stations/search?limit=10`;
-
       try {
-        const response = await fetch(baseURL);
+        const response = await fetch(`https://de1.api.radio-browser.info/json/stations/search?limit=10`);
 
         if (!response.ok) {
           throw new Error(`Error fetching radios: ${response.statusText}`);

@@ -1,5 +1,5 @@
-import type { IRadio } from "@/app/types/interfaces/IRadio";
-import { useState } from "react";
+import React, { useState } from "react";
+import { IRadio } from "../../../types/interfaces/IRadio";
 import { FaPencilAlt, FaPlay, FaStop, FaTrash } from "react-icons/fa";
 import { EditModal } from "../../EditModal";
 
@@ -11,7 +11,7 @@ interface CardProps {
   hasOption?: boolean;
   className?: string;
   addToFavorites?: (radio: IRadio) => void;
-  onUpdate: (radio: IRadio) => void;
+  onUpdate?: (radio: IRadio) => void;
 }
 
 export const RadioCard = ({
@@ -48,11 +48,14 @@ export const RadioCard = ({
   return (
     <div
       className={`flex justify-between items-center bg-project-gray-card px-2 py-4 ${className} ${
-        hasOption ? "lg:px-10" : ""
+        hasOption ? "lg:px-10" : "cursor-pointer hover:bg-project-gray-title"
       }`}
       key={changeuuid}
+      onClick={() => addToFavorites && addToFavorites(radio)}
     >
-      <div className="flex gap-2 items-center">
+      <div
+        className="flex gap-2 items-center"
+      >
         {hasOption && (
           <div className="bg-project-gray-options p-2 rounded-full flex items-center justify-center">
             <button

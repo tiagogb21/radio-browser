@@ -1,3 +1,5 @@
+import React from "react";
+
 interface SearchBarProps {
   radioSearch: string;
   setRadioSearch: (value: string) => void;

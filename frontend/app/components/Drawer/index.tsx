@@ -1,3 +1,4 @@
+import React from "react";
 import { IoMenu } from "react-icons/io5";
 
 interface DrawerProps {
@@ -9,7 +10,7 @@ interface DrawerProps {
 export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children }: DrawerProps) => {
   return (
     <div
-      id="drawer-example"
+      data-testid="drawer-radios"
       className={`no-scrollbar fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${
         isDrawerOpen ? "translate-x-0" : "-translate-x-full"
       } bg-white w-80 dark:bg-project-gray-drawer pt-14`}

@@ -1,4 +1,5 @@
-import { IRadio } from "@/app/types/interfaces/IRadio";
+import React from "react";
+import { IRadio } from "../../types/interfaces/IRadio";
 import { RadioCard } from "../common/RadioCard";
 
 interface RadioListProps {
@@ -13,9 +14,9 @@ export const RadioList = ({ radios, radioSearch, playingRadio, handlePlayStop, a
   return (
     <div className="flex flex-col gap-2 px-2">
       {radios.filter((el) =>
-          el.name.toLowerCase().includes(radioSearch)
-          || el.country.toLowerCase().includes(radioSearch)
-          || el.language.toLowerCase().includes(radioSearch)
+          el.name.toLowerCase().includes(radioSearch.toLowerCase().trim())
+          || el.country.toLowerCase().includes(radioSearch.toLowerCase().trim())
+          || el.language.toLowerCase().includes(radioSearch.toLowerCase().trim())
       ).map((radio) => (
         <RadioCard
           key={radio.changeuuid}

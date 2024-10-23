@@ -1,3 +1,5 @@
+import React from "react";
+
 interface EditModalProp {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;

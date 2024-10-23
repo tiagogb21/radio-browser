@@ -1,5 +1,5 @@
+import React from "react";
 import { FaSearch } from "react-icons/fa";
-import { IRadio } from "@/app/types/interfaces/IRadio";
 
 interface ITopProps {
   search: string;

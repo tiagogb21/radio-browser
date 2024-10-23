@@ -2,8 +2,8 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormInput } from "@/app/components/common/FormInput";
-import { registerSchema, type RegisterSchemaType } from "@/libs/yup/schemas/registerSchema";
+import { registerSchema, type RegisterSchemaType } from "../../lib/yup/schemas/registerSchema";
+import { FormInput } from "../../components/common/FormInput";
 
 export default function Register() {
   const {

@@ -1,19 +1,19 @@
-import { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 
-interface FormInputProp<T> extends InputHTMLAttributes<HTMLInputElement> {
+interface FormInputProp extends InputHTMLAttributes<HTMLInputElement> {
     id: string;
     label: string;
     errors?: string;
     register: object;
 }
 
-export const FormInput = <T,>({
+export const FormInput = ({
     id,
     label,
     type = "text",
     errors,
     register,
-}: FormInputProp<T>) => {
+}: FormInputProp) => {
     return (
         <div className="flex flex-col">
             <label

@@ -1,4 +1,5 @@
-import { IRadio } from "@/app/types/interfaces/IRadio";
+import React from "react";
+import { IRadio } from "../../types/interfaces/IRadio";
 import { RadioCard } from "../common/RadioCard";
 
 interface FavoriteListProps {
@@ -23,9 +24,9 @@ export const FavoriteList = ({
       {favorites
         .filter(
           (el) =>
-            el.name.toLowerCase().includes(search) ||
-            el.country.toLowerCase().includes(search) ||
-            el.language.toLowerCase().includes(search)
+            el.name.toLowerCase().includes(search.toLowerCase().trim()) ||
+            el.country.toLowerCase().includes(search.toLowerCase().trim()) ||
+            el.language.toLowerCase().includes(search.toLowerCase().trim())
         )
         .map((radio) => (
           <RadioCard

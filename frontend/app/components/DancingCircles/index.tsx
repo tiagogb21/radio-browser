@@ -1,4 +1,5 @@
-import type { IRadio } from "@/app/types/interfaces/IRadio";
+import React from "react";
+import type { IRadio } from "../../types/interfaces/IRadio";
 import { FaStop } from "react-icons/fa";
 
 interface DancingCirclesProps {
