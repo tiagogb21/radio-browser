@@ -31,7 +31,9 @@ export const RadioCard = ({
   const handleSaveEdit = () => {
     const updatedRadio = { ...radio, name: editedName };
 
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const storedFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
     const newFavorites = storedFavorites.map((fav: IRadio) =>
       fav.changeuuid === changeuuid ? updatedRadio : fav
     );
@@ -53,14 +55,13 @@ export const RadioCard = ({
       key={changeuuid}
       onClick={() => addToFavorites && addToFavorites(radio)}
     >
-      <div
-        className="flex gap-2 items-center"
-      >
+      <div className="flex gap-2 items-center">
         {hasOption && (
           <div className="bg-project-gray-options p-2 rounded-full flex items-center justify-center">
             <button
               onClick={() => handlePlayStop(url_resolved)}
               className={`${playingRadio === url_resolved ? "" : "pl-1"}`}
+              data-testid={`button-play-stop-${radio.changeuuid}`}
             >
               {playingRadio === url_resolved ? (
                 <FaStop size={24} />
@@ -78,10 +79,16 @@ export const RadioCard = ({
 
       {hasOption && removeFromFavorites && (
         <div className="flex items-center gap-6">
-          <button onClick={() => setIsModalOpen(true)}>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            data-testid={`button-pencil-${radio.changeuuid}`}
+          >
             <FaPencilAlt size={24} />
           </button>
-          <button onClick={() => removeFromFavorites(changeuuid)}>
+          <button
+            onClick={() => removeFromFavorites(changeuuid)}
+            data-testid={`button-trash-${radio.changeuuid}`}
+          >
             <FaTrash size={24} />
           </button>
         </div>

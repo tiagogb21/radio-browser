@@ -43,6 +43,7 @@ export const EditModal = ({
               <button
                 onClick={handleSaveEdit}
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                data-testid={`button-save-edit`}
               >
                 Save
               </button>
