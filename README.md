@@ -40,8 +40,6 @@ Este projeto foi desenvolvido para o desafio da Coodesh e consiste em uma aplica
 
 ## Como Instalar e Rodar o Projeto Localmente
 
-obs.: O projeto está localizado no diretório "frontend".
-
 obs.: Conforme o modelo apresentado, a lista de rádios está acessível no menu, que pode ser aberto por meio do ícone correspondente. Já a lista de rádios favoritas está disponível no conteúdo principal.
 
 ### Pré-requisitos
