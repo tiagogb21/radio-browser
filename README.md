@@ -4,7 +4,7 @@
 
 Este projeto foi publicado na Vercel e pode ser acessado no seguinte link:
 
-[https://radio-browser-urgq.vercel.app/]
+[Link do Deploy](https://radio-browser-urgq.vercel.app/)
 
 ## Descrição do Projeto
 
