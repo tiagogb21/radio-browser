@@ -22,20 +22,36 @@ describe("Drawer Component", () => {
     expect(screen.getByText("Drawer Content")).toBeInTheDocument();
   });
 
-  it("should have 'translate-x-0' class when drawer is open", () => {
+  it("should have 'translate-x-0' class for large screens when drawer is open", () => {
     renderDrawer(true, <div>Drawer Content</div>);
 
     const drawer = screen.getByTestId("drawer-radios");
 
-    expect(drawer).toHaveClass("translate-x-0");
+    expect(drawer).toHaveClass("md:translate-x-0");
   });
 
-  it("should have '-translate-x-full' class when drawer is closed", () => {
+  it("should have '-translate-x-full' class for large screens when drawer is closed", () => {
     renderDrawer(false, <div>Drawer Content</div>);
 
     const drawer = screen.getByTestId("drawer-radios");
 
-    expect(drawer).toHaveClass("-translate-x-full");
+    expect(drawer).toHaveClass("md:-translate-x-full");
+  });
+
+  it("should have 'translate-y-0' class for small screens when drawer is open", () => {
+    renderDrawer(true, <div>Drawer Content</div>);
+
+    const drawer = screen.getByTestId("drawer-radios");
+
+    expect(drawer).toHaveClass("translate-y-0");
+  });
+
+  it("should have '-translate-y-full' class for small screens when drawer is closed", () => {
+    renderDrawer(false, <div>Drawer Content</div>);
+
+    const drawer = screen.getByTestId("drawer-radios");
+
+    expect(drawer).toHaveClass("-translate-y-full");
   });
 
   it("should call setIsDrawerOpen(false) when close button is clicked", () => {

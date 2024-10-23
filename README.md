@@ -63,14 +63,10 @@ cd radio-browser
 ```
 
 ```bash
-cd frontend
-```
-
-```bash
 npm install
 ```
 
-3. Inicie o servidor de desenvolvimento:
+1. Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
