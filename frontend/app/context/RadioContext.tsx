@@ -4,7 +4,7 @@ import type { IRadio } from "../types/interfaces/IRadio";
 
 interface RadioContextType {
   radios: IRadio[];
-  fetchRadios: (query?: string, country?: string, language?: string, page?: number) => void;
+  fetchRadios: (radioSearch?: string, searchFilter?: string, page?: number) => void;
 }
 
 interface RadiosProviderProps {
@@ -20,9 +20,14 @@ export function RadiosProvider({ children }: RadiosProviderProps) {
   const [radios, setRadios] = useState<IRadio[]>([]);
 
   const fetchRadios = useCallback(
-    async () => {
+    async (searchFilter = "", radioSearch = "", page = 1) => {
       try {
-        const response = await fetch(`https://de1.api.radio-browser.info/json/stations/search?limit=10`);
+        const offset = (page - 1) * 10;
+        let url = `https://de1.api.radio-browser.info/json/stations/search?limit=10&offset=${offset}`
+
+        if(searchFilter.length > 0 && radioSearch.length > 0) url += `&${searchFilter}=${radioSearch}`
+
+        const response = await fetch(url);
 
         if (!response.ok) {
           throw new Error(`Error fetching radios: ${response.statusText}`);

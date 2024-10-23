@@ -4,20 +4,15 @@ import { RadioCard } from "../common/RadioCard";
 
 interface RadioListProps {
   radios: IRadio[];
-  radioSearch: string;
   playingRadio: string;
   handlePlayStop: (url: string) => void;
   addToFavorites: (radio: IRadio) => void;
 }
 
-export const RadioList = ({ radios, radioSearch, playingRadio, handlePlayStop, addToFavorites }: RadioListProps) => {
+export const RadioList = ({ radios, playingRadio, handlePlayStop, addToFavorites }: RadioListProps) => {
   return (
     <div className="flex flex-col gap-2 px-2">
-      {radios.filter((el) =>
-          el.name.toLowerCase().includes(radioSearch.toLowerCase().trim())
-          || el.country.toLowerCase().includes(radioSearch.toLowerCase().trim())
-          || el.language.toLowerCase().includes(radioSearch.toLowerCase().trim())
-      ).map((radio) => (
+      {radios.map((radio) => (
         <RadioCard
           key={radio.changeuuid}
           radio={radio}

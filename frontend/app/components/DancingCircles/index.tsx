@@ -24,7 +24,7 @@ export const DancingCircles = ({
               <div className="absolute w-6 h-6 rounded-full border-2 border-green-500 animate-ping delay-400"></div>
             </>
           )}
-          <button onClick={() => handlePlayStop(radio.url_resolved)} className="relative z-10">
+          <button onClick={() => handlePlayStop(radio.url_resolved)} className="">
             <FaStop size={24} />
           </button>
         </div>

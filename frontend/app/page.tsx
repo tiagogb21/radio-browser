@@ -20,16 +20,24 @@ export default function Home() {
     (context) => context?.radios
   );
 
+  const fetchRadios = useContextSelector(
+    RadiosContext,
+    (context) => context.fetchRadios
+  );
+
   const [favorites, setFavorites] = useState<IRadio[]>([]);
   const [playingRadio, setPlayingRadio] = useState<string>("");
   const [search, setSearch] = useState("");
   const [radioSearch, setRadioSearch] = useState("");
   const [page, setPage] = useState(1);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [searchFilter, setSearchFilter] = useState("name");
 
   const addToFavorites = (radio: IRadio) => {
-    const alreadyFavorite = favorites.find((favorite) => favorite.changeuuid === radio.changeuuid);
-    if(!alreadyFavorite) {
+    const alreadyFavorite = favorites.find(
+      (favorite) => favorite.changeuuid === radio.changeuuid
+    );
+    if (!alreadyFavorite) {
       const newFavorites = [...favorites, radio];
       setFavorites(newFavorites);
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
@@ -67,13 +75,27 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      fetchRadios(searchFilter, radioSearch, page);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [radioSearch, searchFilter, page, fetchRadios]);
+
   return (
     <main className="w-full min-h-screen bg-project-gray-cotainer p-10 flex">
       <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}>
-        <SearchBar radioSearch={radioSearch} setRadioSearch={setRadioSearch} />
+        <SearchBar
+          radioSearch={radioSearch}
+          setRadioSearch={setRadioSearch}
+          searchFilter={searchFilter}
+          setSearchFilter={setSearchFilter}
+        />
         <RadioList
           radios={radios}
-          radioSearch={radioSearch}
           playingRadio={playingRadio}
           handlePlayStop={handlePlayStop}
           addToFavorites={addToFavorites}
@@ -95,7 +117,7 @@ export default function Home() {
 
         <div className="container mx-auto flex flex-col gap-2 min-h-96">
           <Top search={search} setSearch={setSearch} />
-          <div className="bg-project-gray-options min-h-72 rounded-lg">
+          <div className="bg-project-gray-options flex flex-col justify-between min-h-72 rounded-lg pb-4">
             {favorites.length > 0 ? (
               <DancingCircles
                 radio={

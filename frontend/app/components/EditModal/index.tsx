@@ -21,7 +21,7 @@ export const EditModal = ({
     <>
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 w-1/3">
+          <div className="bg-white rounded-lg p-6 lg:w-1/3">
             <h2 className="text-xl mb-4">Edit Radio Name</h2>
             <p className="mb-2">
               Current Name: <strong>{name}</strong>
@@ -30,7 +30,7 @@ export const EditModal = ({
               type="text"
               value={editedName}
               onChange={(e) => setEditedName(e.target.value)}
-              className="border rounded-lg w-full p-2 mb-4"
+              className="border rounded-lg w-full p-2 mb-4 text-gray-400"
               placeholder="Enter new name"
             />
             <div className="flex justify-end gap-4">
