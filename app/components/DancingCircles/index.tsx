@@ -14,7 +14,7 @@ export const DancingCircles = ({
   handlePlayStop,
 }: DancingCirclesProps) => {
   return (
-    <div className="flex flex-col gap-2 px-14 py-4 border-b border-solid border-gray-700 shadow-md shadow-gray-500/50 mb-4">
+    <div className="flex flex-col gap-2 px-4 lg:px-14 py-4 border-b border-solid border-gray-700 shadow-md shadow-gray-500/50 mb-4">
       <div key={radio.changeuuid} className="flex items-center">
         <div className="relative flex justify-center items-center w-10 h-10">
           {playingRadio === radio.url_resolved && (

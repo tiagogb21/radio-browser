@@ -14,6 +14,8 @@ interface FavoriteListProps {
   setFavoritePage: (page: number) => void;
 }
 
+const itemsPerPage: number = 10;
+
 export const FavoriteList = ({
   favorites,
   search,
@@ -21,20 +23,39 @@ export const FavoriteList = ({
   handlePlayStop,
   removeFromFavorites,
   handleUpdateFavorite,
+  favoritePage,
 }: FavoriteListProps) => {
-  if (favorites.length === 0) {
+
+  const filteredFavorites = favorites.filter(
+    (el) =>
+      el.name.toLowerCase().includes(search.toLowerCase().trim()) ||
+      el.country.toLowerCase().includes(search.toLowerCase().trim()) ||
+      el.language.toLowerCase().includes(search.toLowerCase().trim())
+  );
+
+  if (filteredFavorites.length === 0) {
     return <Skeleton />;
   }
 
+  const totalPages = Math.ceil(filteredFavorites.length / itemsPerPage);
+
+  const validPage = Math.min(favoritePage, totalPages);
+
+  const startIndex = (validPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const favoritesToDisplay = filteredFavorites.slice(startIndex, endIndex);
+
   return (
     <div className="flex flex-col gap-2 px-2">
-      {favorites
+      {favoritesToDisplay
         .filter(
           (el) =>
             el.name.toLowerCase().includes(search.toLowerCase().trim()) ||
             el.country.toLowerCase().includes(search.toLowerCase().trim()) ||
             el.language.toLowerCase().includes(search.toLowerCase().trim())
         )
+        .slice(0, 10)
         .map((radio) => (
           <RadioCard
             key={radio.changeuuid}

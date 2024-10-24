@@ -26,6 +26,10 @@ export const Pagination = ({
 
   const totalPages = isFavorites ? Math.ceil(favoriteTotal / itemsPerPage) : Infinity;
 
+  if (totalPages <= 1) {
+    return null;
+  }
+
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
     if (paginationRef.current) {
