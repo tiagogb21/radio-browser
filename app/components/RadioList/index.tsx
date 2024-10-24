@@ -4,18 +4,19 @@ import { RadioCard } from "../common/RadioCard";
 
 interface RadioListProps {
   radios: IRadio[];
-  radioSearch: string; // Adicionar essa prop aqui
+  radioSearch: string;
   playingRadio: string;
   handlePlayStop: (url: string) => void;
   addToFavorites: (radio: IRadio) => void;
 }
 
 export const RadioList = ({ radios, radioSearch, playingRadio, handlePlayStop, addToFavorites }: RadioListProps) => {
-  const filteredRadios = radios.filter(
+  console.log(radioSearch);
+  const filteredRadios = radioSearch?.length === 0 ? radios : radios.filter(
     (radio) =>
-      radio.name.toLowerCase().includes(radioSearch.toLowerCase())
-      || radio.country.toLowerCase().includes(radioSearch.toLowerCase())
-      || radio.language.toLowerCase().includes(radioSearch.toLowerCase())
+      radio.name.toLowerCase().includes(radioSearch?.toLowerCase())
+      || radio.country.toLowerCase().includes(radioSearch?.toLowerCase())
+      || radio.language.toLowerCase().includes(radioSearch?.toLowerCase())
   );
 
   return (

@@ -1,13 +1,16 @@
 import React from "react";
 import { IoMenu } from "react-icons/io5";
+import { Pagination } from "../Pagination";
 
 interface DrawerProps {
   isDrawerOpen: boolean;
   setIsDrawerOpen: (state: boolean) => void;
   children: React.ReactNode;
+  page: number;
+  setPage: (page: number) => void;
 }
 
-export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children }: DrawerProps) => {
+export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children, page, setPage }: DrawerProps) => {
   return (
     <div
       data-testid="drawer-radios"
@@ -24,8 +27,8 @@ export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children }: DrawerProps)
         <IoMenu size={24} className="text-project-blue-icon" />
         <span className="sr-only">Close menu</span>
       </button>
-
       {children}
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 };

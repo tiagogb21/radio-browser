@@ -10,6 +10,8 @@ interface FavoriteListProps {
   handlePlayStop: (url: string) => void;
   removeFromFavorites: (changeuuid: string) => void;
   handleUpdateFavorite: (updatedRadio: IRadio) => void;
+  favoritePage: number;
+  setFavoritePage: (page: number) => void;
 }
 
 export const FavoriteList = ({

@@ -29,8 +29,9 @@ export default function Home() {
   const [playingRadio, setPlayingRadio] = useState<string>("");
   const [search, setSearch] = useState("");
   const [radioSearch, setRadioSearch] = useState("");
-  const [page, setPage] = useState(1);
-  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [favoritePage, setFavoritePage] = useState<number>(1);
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(true);
   const [searchFilter, setSearchFilter] = useState("name");
 
   const addToFavorites = (radio: IRadio) => {
@@ -87,7 +88,12 @@ export default function Home() {
 
   return (
     <main className="w-full min-h-screen bg-project-gray-cotainer p-10 flex">
-      <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}>
+      <Drawer
+        isDrawerOpen={isDrawerOpen}
+        setIsDrawerOpen={setIsDrawerOpen}
+        page={page}
+        setPage={setPage}
+      >
         <SearchBar
           radioSearch={radioSearch}
           setRadioSearch={setRadioSearch}
@@ -99,6 +105,7 @@ export default function Home() {
           playingRadio={playingRadio}
           handlePlayStop={handlePlayStop}
           addToFavorites={addToFavorites}
+          radioSearch={radioSearch}
         />
       </Drawer>
 
@@ -117,7 +124,7 @@ export default function Home() {
 
         <div className="container mx-auto flex flex-col gap-2 min-h-96">
           <Top search={search} setSearch={setSearch} />
-          <div className="bg-project-gray-options flex flex-col justify-between min-h-72 rounded-lg pb-4">
+          <div className="bg-project-gray-options flex flex-col min-h-72 rounded-lg pb-4">
             {favorites.length > 0 ? (
               <DancingCircles
                 radio={
@@ -129,17 +136,23 @@ export default function Home() {
                 handlePlayStop={handlePlayStop}
               />
             ) : (
-              <h2 className="text-xl uppercase p-4">Available Radios</h2>
+              <div className="p-4">
+                <h2 className="text-xl uppercase">Available Radios</h2>
+              </div>
             )}
-            <FavoriteList
-              search={search}
-              favorites={favorites}
-              playingRadio={playingRadio}
-              handlePlayStop={handlePlayStop}
-              removeFromFavorites={removeFromFavorites}
-              handleUpdateFavorite={handleUpdateFavorite}
-            />
-            <Pagination page={page} setPage={setPage} />
+            <div className="flex-1 flex flex-col justify-between">
+              <FavoriteList
+                search={search}
+                favorites={favorites}
+                playingRadio={playingRadio}
+                handlePlayStop={handlePlayStop}
+                removeFromFavorites={removeFromFavorites}
+                handleUpdateFavorite={handleUpdateFavorite}
+                favoritePage={favoritePage}
+                setFavoritePage={setFavoritePage}
+              />
+              <Pagination page={favoritePage} setPage={setFavoritePage} isFavorites />
+            </div>
           </div>
         </div>
       </div>
