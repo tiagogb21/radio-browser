@@ -25,7 +25,6 @@ export const FavoriteList = ({
   handleUpdateFavorite,
   favoritePage,
 }: FavoriteListProps) => {
-
   const filteredFavorites = favorites.filter(
     (el) =>
       el.name.toLowerCase().includes(search.toLowerCase().trim()) ||
@@ -49,13 +48,6 @@ export const FavoriteList = ({
   return (
     <div className="flex flex-col gap-2 px-2">
       {favoritesToDisplay
-        .filter(
-          (el) =>
-            el.name.toLowerCase().includes(search.toLowerCase().trim()) ||
-            el.country.toLowerCase().includes(search.toLowerCase().trim()) ||
-            el.language.toLowerCase().includes(search.toLowerCase().trim())
-        )
-        .slice(0, 10)
         .map((radio) => (
           <RadioCard
             key={radio.changeuuid}

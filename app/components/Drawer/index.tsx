@@ -1,8 +1,10 @@
-import React from "react";
-import { IoMenu } from "react-icons/io5";
+import React, { useState } from "react";
+import { IoClose, IoMenu } from "react-icons/io5";
 import { Pagination } from "../Pagination";
+import type { IRadio } from "app/types/interfaces/IRadio";
 
 interface DrawerProps {
+  radios: IRadio[];
   isDrawerOpen: boolean;
   setIsDrawerOpen: (state: boolean) => void;
   children: React.ReactNode;
@@ -10,7 +12,9 @@ interface DrawerProps {
   setPage: (page: number) => void;
 }
 
-export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children, page, setPage }: DrawerProps) => {
+export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children, radios }: DrawerProps) => {
+  const [page, setPage] = useState<number>(1);
+
   return (
     <div
       data-testid="drawer-radios"
@@ -27,11 +31,13 @@ export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children, page, setPage 
         aria-label="Close Drawer"
         aria-labelledby="closeDrawer"
       >
-        <IoMenu size={24} className="text-project-blue-icon" />
+        {
+          isDrawerOpen ? (<IoClose />) : <IoMenu size={24} className="text-project-blue-icon" />
+        }
         <span className="sr-only">Close menu</span>
       </button>
       {children}
-      <Pagination page={page} setPage={setPage} />
+      <Pagination radios={radios} page={page} setPage={setPage} />
     </div>
   );
 };

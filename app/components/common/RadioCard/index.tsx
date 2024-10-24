@@ -74,7 +74,7 @@ export const RadioCard = ({
           </div>
         )}
         <div>
-          <h3>{name}</h3>
+          <h3>{name.trim() || 'Rádio Sem Nome'}</h3>
           {hasOption && <p>{radio.country}</p>}
         </div>
       </div>

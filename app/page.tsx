@@ -117,6 +117,7 @@ export default function Home() {
         setIsDrawerOpen={setIsDrawerOpen}
         page={page}
         setPage={setPage}
+        radios={radios}
       >
         <SearchBar
           radioSearch={radioSearch}
@@ -177,7 +178,7 @@ export default function Home() {
                 favoritePage={favoritePage}
                 setFavoritePage={setFavoritePage}
               />
-              <Pagination page={favoritePage} setPage={setFavoritePage} isFavorites />
+              <Pagination radios={favorites} page={favoritePage} setPage={setFavoritePage} isFavorites />
             </div>
           </div>
         </div>
