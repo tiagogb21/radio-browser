@@ -160,7 +160,6 @@ export default function Home() {
                   ) || favorites[0]
                 }
                 playingRadio={playingRadio}
-                handlePlayStop={handlePlayStop}
               />
             ) : (
               <div className="p-4">

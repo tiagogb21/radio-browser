@@ -5,13 +5,11 @@ import { FaStop } from "react-icons/fa";
 interface DancingCirclesProps {
   radio: IRadio;
   playingRadio?: string;
-  handlePlayStop: (url: string) => void;
 }
 
 export const DancingCircles = ({
   radio,
   playingRadio,
-  handlePlayStop,
 }: DancingCirclesProps) => {
   return (
     <div className="flex flex-col gap-2 px-4 lg:px-14 py-4 border-b border-solid border-gray-700 shadow-md shadow-gray-500/50 mb-4">
