@@ -34,6 +34,13 @@ export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(true);
   const [searchFilter, setSearchFilter] = useState("name");
 
+  const [selectedRadios, setSelectedRadios] = useState<string[]>([]);
+
+  const updateSelectedRadios = (newSelectedRadios: string[]) => {
+    setSelectedRadios(newSelectedRadios);
+    localStorage.setItem("selectedRadios", JSON.stringify(newSelectedRadios));
+  };
+
   const addToFavorites = (radio: IRadio) => {
     const alreadyFavorite = favorites.find(
       (favorite) => favorite.changeuuid === radio.changeuuid
@@ -42,6 +49,10 @@ export default function Home() {
       const newFavorites = [...favorites, radio];
       setFavorites(newFavorites);
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
+
+      if (!selectedRadios.includes(radio.changeuuid)) {
+        updateSelectedRadios([...selectedRadios, radio.changeuuid]);
+      }
     }
   };
 
@@ -51,6 +62,8 @@ export default function Home() {
     );
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    const newSelectedRadios = selectedRadios.filter(id => id !== changeuuid);
+    updateSelectedRadios(newSelectedRadios);
   };
 
   const handlePlayStop = (url: string) => {
@@ -70,6 +83,13 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const storedSelectedRadios = localStorage.getItem("selectedRadios");
+    if (storedSelectedRadios) {
+      setSelectedRadios(JSON.parse(storedSelectedRadios));
+    }
+  }, []);
+
+  useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
       setFavorites(JSON.parse(storedFavorites));
@@ -85,6 +105,10 @@ export default function Home() {
       clearTimeout(handler);
     };
   }, [radioSearch, searchFilter, page, fetchRadios]);
+
+  useEffect(() => {
+    localStorage.setItem("selectedRadios", JSON.stringify(selectedRadios));
+  }, [selectedRadios]);
 
   return (
     <main className="w-full min-h-screen bg-project-gray-cotainer p-10 flex">
@@ -106,6 +130,7 @@ export default function Home() {
           handlePlayStop={handlePlayStop}
           addToFavorites={addToFavorites}
           radioSearch={radioSearch}
+          selectedRadios={selectedRadios}
         />
       </Drawer>
 
@@ -118,6 +143,8 @@ export default function Home() {
           className="text-white"
           type="button"
           onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          aria-label="Open Drawer"
+          aria-labelledby="openDrawer"
         >
           <IoMenu size={24} />
         </button>

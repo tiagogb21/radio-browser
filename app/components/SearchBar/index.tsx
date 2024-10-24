@@ -19,6 +19,7 @@ export const SearchBar = ({
         className="rounded-lg bg-inherit text-white"
         value={searchFilter}
         onChange={(e) => setSearchFilter(e.target.value)}
+        aria-label="search"
       >
         <option value="name">Name</option>
         <option value="country">Country</option>
@@ -27,6 +28,7 @@ export const SearchBar = ({
 
       <input
         className="rounded-lg w-full bg-inherit placeholder:text-white ml-2 flex-1"
+        data-testid="search-radios"
         type="text"
         placeholder={`Search by ${searchFilter}`}
         value={radioSearch}

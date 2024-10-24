@@ -8,16 +8,26 @@ interface RadioListProps {
   playingRadio: string;
   handlePlayStop: (url: string) => void;
   addToFavorites: (radio: IRadio) => void;
+  selectedRadios: string[];
 }
 
-export const RadioList = ({ radios, radioSearch, playingRadio, handlePlayStop, addToFavorites }: RadioListProps) => {
-  console.log(radioSearch);
-  const filteredRadios = radioSearch?.length === 0 ? radios : radios.filter(
-    (radio) =>
-      radio.name.toLowerCase().includes(radioSearch?.toLowerCase())
-      || radio.country.toLowerCase().includes(radioSearch?.toLowerCase())
-      || radio.language.toLowerCase().includes(radioSearch?.toLowerCase())
-  );
+export const RadioList = ({
+  radios,
+  radioSearch,
+  playingRadio,
+  handlePlayStop,
+  addToFavorites,
+  selectedRadios,
+}: RadioListProps) => {
+  const filteredRadios =
+    radioSearch?.length === 0
+      ? radios
+      : radios.filter(
+          (radio) =>
+            radio.name.toLowerCase().includes(radioSearch?.toLowerCase()) ||
+            radio.country.toLowerCase().includes(radioSearch?.toLowerCase()) ||
+            radio.language.toLowerCase().includes(radioSearch?.toLowerCase())
+        );
 
   return (
     <div className="flex flex-col gap-2 px-2">
@@ -29,6 +39,7 @@ export const RadioList = ({ radios, radioSearch, playingRadio, handlePlayStop, a
           handlePlayStop={handlePlayStop}
           hasOption={false}
           addToFavorites={() => addToFavorites(radio)}
+          isSelected={selectedRadios.includes(radio.changeuuid)}
         />
       ))}
     </div>

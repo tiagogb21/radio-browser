@@ -23,6 +23,9 @@ export const Drawer = ({ isDrawerOpen, setIsDrawerOpen, children, page, setPage 
         type="button"
         onClick={() => setIsDrawerOpen(false)}
         className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+        data-testid="close-drawer"
+        aria-label="Close Drawer"
+        aria-labelledby="closeDrawer"
       >
         <IoMenu size={24} className="text-project-blue-icon" />
         <span className="sr-only">Close menu</span>

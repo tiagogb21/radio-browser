@@ -7,9 +7,10 @@ const mockHandlePlayStop = jest.fn();
 const mockOnUpdate = jest.fn();
 const mockRemoveFromFavorites = jest.fn();
 const mockHandleUpdateFavorite = jest.fn();
+const mockSetFavoritePage = jest.fn();
 
 describe("FavoriteList Component", () => {
-  const renderFavoriteList = (radioSearch = "", playingRadio = "") =>
+  const renderFavoriteList = (radioSearch = "", playingRadio = "", favoritePage = 1) =>
     render(
       <FavoriteList
         favorites={mockRadios}
@@ -18,6 +19,8 @@ describe("FavoriteList Component", () => {
         handlePlayStop={mockHandlePlayStop}
         removeFromFavorites={mockRemoveFromFavorites}
         handleUpdateFavorite={mockHandleUpdateFavorite}
+        favoritePage={favoritePage}
+        setFavoritePage={mockSetFavoritePage}
       />
     );
 

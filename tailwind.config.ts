@@ -13,7 +13,8 @@ const config: Config = {
         foreground: "var(--foreground)",
         project: {
           blue: {
-            icon: "#196BE1"
+            icon: "#196BE1",
+            icon1: "#1267FC",
           },
           gray: {
             cotainer: "#2B2B30",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IRadio } from "../../../types/interfaces/IRadio";
-import { FaPencilAlt, FaPlay, FaStop, FaTrash } from "react-icons/fa";
+import { FaCheck, FaPencilAlt, FaPlay, FaStop, FaTrash } from "react-icons/fa";
 import { EditModal } from "../../EditModal";
 
 interface CardProps {
@@ -12,6 +12,7 @@ interface CardProps {
   className?: string;
   addToFavorites?: (radio: IRadio) => void;
   onUpdate?: (radio: IRadio) => void;
+  isSelected?: boolean;
 }
 
 export const RadioCard = ({
@@ -23,6 +24,7 @@ export const RadioCard = ({
   className,
   addToFavorites,
   onUpdate,
+  isSelected = false,
 }: CardProps) => {
   const { changeuuid, name, url_resolved } = radio;
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -77,6 +79,8 @@ export const RadioCard = ({
         </div>
       </div>
 
+      {isSelected && <FaCheck className="text-project-blue-icon1" />}
+
       {hasOption && removeFromFavorites && (
         <div className="flex items-center gap-6">
           <button
@@ -91,16 +95,16 @@ export const RadioCard = ({
           >
             <FaTrash size={24} />
           </button>
+          <EditModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            name={name}
+            editedName={editedName}
+            setEditedName={setEditedName}
+            handleSaveEdit={handleSaveEdit}
+          />
         </div>
       )}
-      <EditModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        name={name}
-        editedName={editedName}
-        setEditedName={setEditedName}
-        handleSaveEdit={handleSaveEdit}
-      />
     </div>
   );
 };

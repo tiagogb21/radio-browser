@@ -7,7 +7,7 @@ describe("Drawer Component", () => {
 
   const renderDrawer = (isDrawerOpen: boolean, children: React.ReactNode) =>
     render(
-      <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={mockSetIsDrawerOpen}>
+      <Drawer isDrawerOpen={isDrawerOpen} setIsDrawerOpen={mockSetIsDrawerOpen} page={1} setPage={()=>1}>
         {children}
       </Drawer>
     );
@@ -57,7 +57,7 @@ describe("Drawer Component", () => {
   it("should call setIsDrawerOpen(false) when close button is clicked", () => {
     renderDrawer(true, <div>Drawer Content</div>);
 
-    const closeButton = screen.getByRole("button", { name: /close menu/i });
+    const closeButton = screen.getByTestId("close-drawer");
     fireEvent.click(closeButton);
 
     expect(mockSetIsDrawerOpen).toHaveBeenCalledWith(false);

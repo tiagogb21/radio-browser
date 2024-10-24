@@ -7,7 +7,7 @@ const mockHandlePlayStop = jest.fn();
 const mockAddToFavorites = jest.fn();
 
 describe("RadioList Component", () => {
-  const renderRadioList = (radioSearch = "", playingRadio = "") =>
+  const renderRadioList = (radioSearch = "", playingRadio = "", selectedRadios = []) =>
     render(
       <RadioList
         radios={mockRadios}
@@ -15,6 +15,7 @@ describe("RadioList Component", () => {
         playingRadio={playingRadio}
         handlePlayStop={mockHandlePlayStop}
         addToFavorites={mockAddToFavorites}
+        selectedRadios={selectedRadios}
       />
     );
 
