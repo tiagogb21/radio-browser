@@ -1,5 +1,7 @@
 # Radio Browser Challenge
 
+This is a challenge by Coodesh
+
 ## Vercel:
 
 Este projeto foi publicado na Vercel e pode ser acessado no seguinte link:
