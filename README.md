@@ -55,7 +55,7 @@ obs.: Conforme o modelo apresentado, a lista de rádios está acessível no menu
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/radio-browser-challenge.git
+git clone https://github.com/tiagogb21/radio-browser.git
 ```
 
 2. Instale as dependências:
