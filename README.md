@@ -76,7 +76,7 @@ npm run dev
 4. Abra a aplicação: A aplicação estará rodando no endereço:
 
 ```bash
-http://localhost:3000.
+http://localhost:3000
 ```
 
 ### Rodando o Projeto com Docker
